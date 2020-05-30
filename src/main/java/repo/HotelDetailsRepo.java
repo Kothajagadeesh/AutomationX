@@ -3,8 +3,8 @@ package repo;
 import org.openqa.selenium.By;
 import utils.SafeElementsActions;
 
-public class HotelDetailsRepo extends SafeElementsActions {
+public interface HotelDetailsRepo {
 
-    private By roomsTab = By.id("detpg_hotel_rooms");
-    private By roomsType = By.id(".roomWrap h2"); //get list and retrieve innerText from first index
+    By roomsTab = By.id("detpg_hotel_rooms");
+    By roomsType = By.id(".roomWrap h2"); //get list and retrieve innerText from first index
 }
