@@ -5,7 +5,7 @@
 <suite name="Sample suite" parallel="classes" thread-count="1" configfailurepolicy="continue">
 
     <listeners>
-        <listener class-name="utils.Listeners.TestNgListener"/>
+        <listener class-name="utils.listeners.TestNgListener"/>
     </listeners>
 
     <test thread-count="2" name="test">

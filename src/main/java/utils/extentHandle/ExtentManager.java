@@ -1,4 +1,4 @@
-package utils.ExtentHandle;
+package utils.extentHandle;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;

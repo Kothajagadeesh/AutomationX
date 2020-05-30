@@ -7,7 +7,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import utils.BaseClass;
-import utils.Listeners.TestNgListener;
+import utils.listeners.TestNgListener;
 
 public class SampleTest extends BaseClass {
 
