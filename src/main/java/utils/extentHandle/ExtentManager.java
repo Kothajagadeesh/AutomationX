@@ -19,7 +19,7 @@ public class ExtentManager  extends BrowserInit {
     public ExtentReports extentReports;
     public static String currentDir = System.getProperty("user.dir");
     public static String reportDir = "/reports/";
-    public static String screenshotDir = "/reports/screenshots";
+    public static String screenshotDir = "/reports/screenshots/";
     public static String fileName = "extent3_";
 
     private static String generateHtml() {

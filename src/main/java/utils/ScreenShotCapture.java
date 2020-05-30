@@ -11,13 +11,13 @@ import java.io.IOException;
 
 public class ScreenShotCapture extends BrowserInit {
     Logger logger = Logger.getLogger(ScreenShotCapture.class);
-    /*WebDriver driver;
+    WebDriver driver;
 
     public ScreenShotCapture(WebDriver driver) {
         this.driver = driver;
-    }*/
+    }
 
-    public void captureScreenshot(WebDriver driver, String path) {
+    public void captureScreenshot(String path) {
         TakesScreenshot ts = (TakesScreenshot) driver;
         File fs = ts.getScreenshotAs(OutputType.FILE);
 
@@ -27,7 +27,7 @@ public class ScreenShotCapture extends BrowserInit {
         try {
             FileUtils.copyFile(fs, dest);
         } catch (IOException e) {
-            logger.info("Exception while coping screenshot" );
+            logger.info("Exception while coping screenshot");
         }
     }
 }

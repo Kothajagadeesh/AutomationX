@@ -3,6 +3,7 @@ package utils.listeners;
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.WebDriver;
 import org.testng.*;
 import utils.extentHandle.ExtentManager;
 import utils.ScreenShotCapture;
@@ -50,19 +51,20 @@ public class TestNgListener extends ExtentManager implements ITestListener, ISui
         extentReports.flush();
     }
 
-    public synchronized void AssertFailAndContinue(boolean result, String description) {
+    public synchronized void AssertFailAndContinue(WebDriver driver, boolean result, String description) {
         try {
             if (result) {
                 childTest.log(Status.PASS, description);
             } else {
-                String s = System.getProperty("user.dir") + "/src/main/resources/" + methodName + " .png";
-                sc.captureScreenshot(driver, s);
+                String s = System.getProperty("user.dir") + screenshotDir + description.replaceAll(" ", "_") + ".png";
+                sc = new ScreenShotCapture(driver);
+                sc.captureScreenshot(s);
                 childTest.log(Status.FAIL, description, MediaEntityBuilder.createScreenCaptureFromPath(s).build());
                 ITestResult result1 = Reporter.getCurrentTestResult();
                 result1.setStatus(2);
             }
         } catch (Exception e) {
-            logger.info("Exception occured foe screenshot capture" + e);
+            logger.info("Exception for screenshot capture" + e);
         }
     }
 

@@ -26,19 +26,19 @@ public class SampleTest extends BaseClass {
         driver.get("http://www.google.com");
     }
 
-    @Test
+    /*@Test
     public void googleType() throws InterruptedException {
         driver.findElement(By.name("q")).sendKeys("hello");
 
         testNgListener3.AssertFailAndContinue(1 == 1, "checking Test1 assertion passed");
-    }
+    }*/
 
     @Test
     public void googleType2() throws InterruptedException {
         driver.findElement(By.name("q")).sendKeys("hello world");
 
         //testNgListener3.logWarning("This method is for entering warning message");
-        testNgListener3.AssertFailAndContinue(1 == 2, "checking Test1 assertion passed");
+        testNgListener3.AssertFailAndContinue(driver, 1 == 2, "checking Test1 assertion");
     }
 
     @AfterClass
