@@ -124,13 +124,13 @@
             <activation>
                 <property>
                     <name>env</name>
-                    <value>prod-ie-local</value>
+                    <value>prod-chrome-local</value>
                 </property>
             </activation>
             <properties>
                 <env.profile>prod</env.profile>
                 <env.execType>local</env.execType>
-                <env.browser>ie</env.browser>
+                <env.browser>chrome</env.browser>
             </properties>
         </profile>
     </profiles>
