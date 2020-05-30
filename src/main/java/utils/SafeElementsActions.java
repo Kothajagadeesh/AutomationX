@@ -1,87 +1,90 @@
 package utils;
 
 import org.apache.log4j.Logger;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.StaleElementReferenceException;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class SafeElementsActions extends BrowserInit {
+public class SafeElementsActions {
     Logger logger = Logger.getLogger(SafeElementsActions.class);
+    WebDriver driver;
+
+    public SafeElementsActions(WebDriver driver) {
+        this.driver = driver;
+    }
 
     /**
-     * If the element is a text entry element(input or textarea), this will clear the value.
+     * If the locator is a text entry element(input or textarea), this will clear the value.
      *
-     * @param element to be clear
+     * @param locator to be clear
      */
-    public void clear(WebElement element) {
-        waitUntilElementDisplayed(element);
-        element.clear();
-        logger.info("Text in the element -  " + element + " - is removed");
+    public void clear(By locator) {
+        waitUntilElementDisplayed(locator);
+        driver.findElement(locator).clear();
+        logger.info("Text in the locator -  " + locator + " - is removed");
     }
 
     /**
      * Click this element
      *
-     * @param element to be clicked
+     * @param locator to be clicked
      */
-    public void click(WebElement element) {
-        waitUntilElementDisplayed(element);
+    public void click(By locator) {
+        waitUntilElementDisplayed(locator);
         try {
-            element.click();
-            logger.info("Clicked on element - " + element);
+            driver.findElement(locator).click();
+            logger.info("Clicked on locator - " + locator);
         } catch (StaleElementReferenceException e) {
             e.printStackTrace();
         }
     }
 
     /**
-     * Get the value of the given attribute of the element.
+     * Get the value of the given attribute of the driver.findElement(locator).
      *
-     * @param element   to be performed
+     * @param locator   to be performed
      * @param attribute of the element
      * @return string if the attribute found else return null
      */
-    public String getAttribute(WebElement element, String attribute) {
-        waitUntilElementDisplayed(element);
-        return element.getAttribute(attribute);
+    public String getAttribute(By locator, String attribute) {
+        waitUntilElementDisplayed(locator);
+        return driver.findElement(locator).getAttribute(attribute);
     }
 
     /**
      * Get the css property of the element
      *
-     * @param element     to be performed
+     * @param locator     to be performed
      * @param cssProperty the css property name of the element
      * @return The current, computed value of the property.
      */
-    public String getCssvalue(WebElement element, String cssProperty) {
-        waitUntilElementDisplayed(element);
-        return element.getCssValue(cssProperty);
+    public String getCssvalue(By locator, String cssProperty) {
+        waitUntilElementDisplayed(locator);
+        return driver.findElement(locator).getCssValue(cssProperty);
     }
 
     /**
      * Get the visible (i.e. not hidden by CSS) innerText of this element, including sub-elements,
      * without any leading or trailing whitespace.
      *
-     * @param element to be found
-     * @return The innerText of this element.
+     * @param locator to be found
+     * @return The innerText of this driver.findElement(locator).
      */
-    public String getText(WebElement element) {
-        return element.getText();
+    public String getText(By locator) {
+        return driver.findElement(locator).getText();
     }
 
     /**
-     * Get the tag name of this element.
+     * Get the tag name of this driver.findElement(locator).
      *
-     * @param element to be found
-     * @return The tag name of this element.
+     * @param locator to be found
+     * @return The tag name of this driver.findElement(locator).
      */
-    public String getTagName(WebElement element) {
-        waitUntilElementDisplayed(element);
+    public String getTagName(By locator) {
+        waitUntilElementDisplayed(locator);
         try {
-            return element.getTagName();
+            return driver.findElement(locator).getTagName();
         } catch (Exception e) {
             e.printStackTrace();
             return "";
@@ -89,44 +92,44 @@ public class SafeElementsActions extends BrowserInit {
     }
 
     /**
-     * Is this element displayed or not?
+     * Is this locator displayed or not?
      *
-     * @param element to be found
-     * @return Whether or not the element is displayed
+     * @param locator to be found
+     * @return Whether or not the locator is displayed
      */
-    public boolean isDisplayed(WebElement element) {
+    public boolean isDisplayed(By locator) {
         try {
-            return element.isDisplayed();
+            return driver.findElement(locator).isDisplayed();
         } catch (NoSuchElementException e) {
             return false;
         }
     }
 
     /**
-     * Is the element currently enabled or not?
+     * Is the locator currently enabled or not?
      *
-     * @param element to be found
-     * @return True if the element is enabled, false otherwise.
+     * @param locator to be found
+     * @return True if the locator is enabled, false otherwise.
      */
-    public boolean isEnabled(WebElement element) {
+    public boolean isEnabled(By locator) {
         try {
-            return element.isEnabled();
+            return driver.findElement(locator).isEnabled();
         } catch (Exception e) {
             return false;
         }
     }
 
     /**
-     * Determine whether or not this element is selected or not
+     * Determine whether or not this locator is selected or not
      * This operation only applies to input elements such as checkboxes, options in a select and radio buttons.
      *
-     * @param element to be found
-     * @return True if the element is currently selected or checked, false otherwise
+     * @param locator to be found
+     * @return True if the locator is currently selected or checked, false otherwise
      */
-    public boolean isSelected(WebElement element) {
-        waitUntilElementDisplayed(element);
+    public boolean isSelected(By locator) {
+        waitUntilElementDisplayed(locator);
         try {
-            return element.isSelected();
+            return driver.findElement(locator).isSelected();
         } catch (Exception e) {
             return false;
         }
@@ -135,13 +138,13 @@ public class SafeElementsActions extends BrowserInit {
     /**
      * Method to simulate typing into an element, which may set its value.
      *
-     * @param element to be found
+     * @param locator to be found
      * @param text    to send to the element
      */
-    public void fillText(WebElement element, String text) {
-        waitUntilElementDisplayed(element);
+    public void fillText(By locator, String text) {
+        waitUntilElementDisplayed(locator);
         try {
-            element.sendKeys(text);
+            driver.findElement(locator).sendKeys(text);
         } catch (IllegalArgumentException e) {
             logger.info("Please check the text you have passed: " + text);
         }
@@ -150,75 +153,59 @@ public class SafeElementsActions extends BrowserInit {
     /**
      * This method will perform both clear and fill text
      *
-     * @param element to be found
+     * @param locator to be found
      * @param text    to send to the element
      */
-    public void clearAndFillText(WebElement element, String text) {
+    public void clearAndFillText(By locator, String text) {
         try {
-            element.clear();
-            element.sendKeys(text);
+            driver.findElement(locator).clear();
+            driver.findElement(locator).sendKeys(text);
         } catch (IllegalArgumentException e) {
             logger.info("Please check the text you have passed: " + text);
         }
     }
 
     /**
-     * If the current element is a form, or an element within a form,
+     * If the current locator is a form, or an locator within a form,
      * then this will be submitted to the remote server.
      *
-     * @param element to be found
+     * @param locator to be found
      */
-    public void submit(WebElement element) {
+    public void submit(By locator) {
         try {
-            element.submit();
+            driver.findElement(locator).submit();
         } catch (NoSuchElementException e) {
-            logger.info("element: " + element + " - is not found in the current page");
+            logger.info("element: " + locator + " - is not found in the current page");
         }
     }
 
     /**
-     * waits until the element is found
+     * waits until the locator is found
      *
-     * @param element to be found
+     * @param locator to be found
      * @return True if elements is found
      */
-    public boolean waitUntilElementDisplayed(WebElement element) {
+    public boolean waitUntilElementDisplayed(By locator) {
         try {
-            return new WebDriverWait(getDriver(), 20).until(ExpectedConditions.visibilityOf(element)).isDisplayed();
+            return new WebDriverWait(driver, 20).until(ExpectedConditions.visibilityOfElementLocated(locator)).isDisplayed();
         } catch (Exception e) {
-            logger.info("Element - " + element + " is not found after 20 seconds wait");
+            logger.info("Element - " + locator + " is not found after 20 seconds wait");
             return false;
         }
     }
 
     /**
-     * waits until the element is found
+     * waits until the locator is found
      *
-     * @param element to be found
+     * @param locator to be found
      * @return True if elemenet is found
      */
-    public boolean waitUntilElementDisplayed(WebElement element, int timeout) {
+    public boolean waitUntilElementDisplayed(By locator, int timeout) {
         try {
-            new WebDriverWait(getDriver(), timeout).until(ExpectedConditions.visibilityOf(element));
+            new WebDriverWait(driver, timeout).until(ExpectedConditions.visibilityOfElementLocated(locator));
             return true;
         } catch (Exception e) {
-            logger.info("Element - " + element + " is not found after 20 seconds wait");
-            return false;
-        }
-    }
-
-    /**
-     * waits until the element is invisible
-     *
-     * @param element to be found
-     * @return True if element is not found
-     */
-    public boolean waitUntilElementInvisiblie(WebElement element, int timeout) {
-        try {
-            new WebDriverWait(getDriver(), 20).until(ExpectedConditions.invisibilityOf(element));
-            return true;
-        } catch (NoSuchElementException e) {
-            logger.info("Element - " + element + " is still displayed after 20 seconds wait");
+            logger.info("Element - " + locator + " is not found after 20 seconds wait");
             return false;
         }
     }
