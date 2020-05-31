@@ -1,31 +1,44 @@
-**Tools Used**
+# Team - AutomationX #
 
-Java 1.8 > Programming language
+This repository has automated functional test for Hotels search on [Make My Trip](https://www.makemytrip.com/) as part of [HeadSpin Automation Hackathon](https://www.thetesttribe.com/headspin-automation-hackathon/).
 
-TestNG > Unit testing framework
+### Tools Used ###
 
-Maven > Build tool for Java
+- Programming language: ```Java - 1.8```
 
-Extent Reports > For Reports
+- Automation Tool: ```Selenium WebDriver - 3.141.59```
 
-Git > Version Control
+- Unit testing framework: ```TestNG - 6.14.3```
 
-**Running Scripts from IDE**
+- Build tool: ```Maven - 1.8```
 
-Select desired profiles from maven profile and run runner.xml
+- Reporting Tool: ```Extent Reports - 2.41.2```
 
-**Running Scripts from Terminal**
+- Version Controlling: ```Git```
 
-Make sure you have maven installed 
+### Running Scripts from IDE ###
 
-open terminal/cmd, go to project folder and run below command 
+* Select desired profiles from maven profile and run `runner.xml`
 
-`mvn clean install -Dprofile=local-chrome`
+### Running Scripts from Terminal ###
 
-by default runner.xml will execute, if you want run other xml file from maven, use below command
+* Make sure you have maven installed
 
-`mvn clean install -Dprofile=local-chrome -DsuiteXmlFile=<xmlfileName>`
+* open terminal/cmd, go to project folder and run below command
 
-**Reports**
+    * `mvn clean install -Dprofile=local-chrome`
+
+* by default runner.xml will execute, if you want run other xml file from maven, use below command
+
+    * `mvn clean install -Dprofile=local-chrome -DsuiteXmlFile=<xmlfileName>`
+
+### Reports ###
 
 Reports will be generate under reports folder with current
+
+### Contributors ###
+
+* Jagadeesh Kotha
+* Shyam Sunder
+* Suresh Thammishetty
+* Goutham Kumar Duduka
