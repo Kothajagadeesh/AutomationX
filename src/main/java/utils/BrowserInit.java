@@ -13,6 +13,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.concurrent.TimeUnit;
 
 public class BrowserInit {
 
@@ -59,9 +60,11 @@ public class BrowserInit {
                     break;
             }
             maximizeDriverWindow(driver);
+            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         } else if (execType.equalsIgnoreCase("headspin")) {
             try {
-                capabilities.setBrowserName("chrome");
+                capabilities.setBrowserName(browser.toLowerCase());
+                capabilities.setCapability("headspin:capture", true);
                 driver = new RemoteWebDriver(new URL("https://dev-us-pao-0.headspin.io:9093/v0/2963762127b64f39bc1e91f5bf50bd81/wd/hub"), capabilities);
             } catch (MalformedURLException e) {
                 logger.warn("Exception with remote web driver URL" + e);

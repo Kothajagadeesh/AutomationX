@@ -10,44 +10,45 @@ import java.util.List;
 public class ReviewBookingPage extends SafeElementsActions implements ReviewBookingPageRepo {
 
     WebDriver driver;
+
     public ReviewBookingPage(WebDriver driver) {
         super(driver);
         this.driver = driver;
     }
 
-    public void closeModalIfExists(){
+    public void closeModalIfExists() {
         List<WebElement> modalDialog = driver.findElements(modal);
-        if(modalDialog.size()>0)
+        if (modalDialog.size() > 0)
             click(modalClose);
     }
 
-    public boolean isHeaderExists(){
+    public boolean isHeaderExists() {
         return isDisplayed(reviewBookingHeader);
     }
 
-    public void setTitle(){
+    public void setTitle() {
         click(titleList);
         click(titleListOption);
     }
 
-    public void enterName(String sFname, String sLanme){
-        clearAndFillText(firstNameField,sFname);
-        clearAndFillText(lastNameField,sLanme);
+    public void enterName(String sFname, String sLanme) {
+        clearAndFillText(firstNameField, sFname);
+        clearAndFillText(lastNameField, sLanme);
     }
 
-    public void enterEmailID(String sEmailID){
+    public void enterEmailID(String sEmailID) {
         clearAndFillText(emailIDField, sEmailID);
     }
 
-    public void enterIndianMobile(String sMobileNo){
+    public void enterIndianMobile(String sMobileNo) {
         clearAndFillText(mobileNoField, sMobileNo);
     }
 
-    public void selectCommonRequests(String sCommonRequest){
+    public void selectCommonRequests(String sCommonRequest) {
         List<WebElement> requests = driver.findElements(commonRequests);
-        for(int i=0;i<requests.size()-1;i++){
+        for (int i = 0; i < requests.size() - 1; i++) {
             String sRequest = requests.get(i).getAttribute("innerText");
-            if(sRequest.contains(sCommonRequest)){
+            if (sRequest.contains(sCommonRequest)) {
                 requests.get(i).click();
                 break;
             }
@@ -62,7 +63,7 @@ public class ReviewBookingPage extends SafeElementsActions implements ReviewBook
         boolean alreadySelected = isDonationChecked();
 
         //only click if the test's intent does not match the current state
-        if( (checkIt && !alreadySelected) || (!checkIt && alreadySelected) ) {
+        if ((checkIt && !alreadySelected) || (!checkIt && alreadySelected)) {
             click(donationCheckbox);
         }
     }
@@ -75,12 +76,12 @@ public class ReviewBookingPage extends SafeElementsActions implements ReviewBook
         boolean alreadySelected = isAgreeChecked();
 
         //only click if the test's intent does not match the current state
-        if( (checkIt && !alreadySelected) || (!checkIt && alreadySelected) ) {
+        if ((checkIt && !alreadySelected) || (!checkIt && alreadySelected)) {
             click(agreeCheckbox);
         }
     }
 
-    public void clickPayNowButton(){
+    public void clickPayNowButton() {
         click(payNowButton);
     }
 }
