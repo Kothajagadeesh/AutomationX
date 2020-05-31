@@ -8,3 +8,4 @@ log/*
 .settings*
 
 .classpath
+.DS_Store
