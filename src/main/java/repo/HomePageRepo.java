@@ -3,7 +3,7 @@ package repo;
 import org.openqa.selenium.By;
 import utils.SafeElementsActions;
 
-public class HomePageRepo extends SafeElementsActions  {
+public interface HomePageRepo  {
 
     public By countrySelect = By.className("ctrySelect"); //check for visibility first
     public By countryList = By.className("div.ctryList span.countryName"); //Get list of elements and text. click on by text passed from method
