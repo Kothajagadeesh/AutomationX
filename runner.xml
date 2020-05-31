@@ -10,7 +10,12 @@
 
     <test thread-count="2" name="test">
         <classes>
-            <class name="tests.MMT_HotelsBooking"/>
+            <class name="tests.MMT_HotelsBooking">
+                <methods>
+                    <exclude name="mmt_BookHotelRegistered"></exclude>
+                </methods>
+            </class>
+
         </classes>
     </test>
 
