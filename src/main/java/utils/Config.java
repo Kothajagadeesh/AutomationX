@@ -9,6 +9,8 @@ public class Config {
     public static final String BROWSER_TYPE = "browser.type";
     public static final String ENV_PROFILE = "environment.profile";
     public static final String HUB_URL = "hub.url";
+    public static final String USER_NAME = "user.name";
+    public static final String PASSWORD = "password";
 
     private static String configFile = "config.properties";
 
@@ -59,5 +61,23 @@ public class Config {
             e.printStackTrace();
         }
         return configuration.getString(HUB_URL);
+    }
+
+    public static String getUserName() {
+        try {
+            configuration = new PropertiesConfiguration((loadAndGetResourceLocation(configFile)));
+        } catch (ConfigurationException e) {
+            e.printStackTrace();
+        }
+        return configuration.getString(USER_NAME);
+    }
+
+    public static String getPassword() {
+        try {
+            configuration = new PropertiesConfiguration((loadAndGetResourceLocation(configFile)));
+        } catch (ConfigurationException e) {
+            e.printStackTrace();
+        }
+        return configuration.getString(PASSWORD);
     }
 }
