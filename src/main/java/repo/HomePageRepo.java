@@ -12,5 +12,5 @@ public interface HomePageRepo {
 	By passwordField = By.id("password");
 	By continueButton = By.cssSelector("button[data-cy='continueBtn']");
 	By loginButton = By.cssSelector("button[data-cy='login']");
-	By loggedInUser = By.cssSelector("li[data-cy='account'] .userDropdown>p");
+	By loggedInUser = By.cssSelector("p[data-cy='account']");
 }

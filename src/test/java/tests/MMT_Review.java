@@ -3,6 +3,7 @@ package tests;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.*;
 import utils.BaseClass;
+import utils.Config;
 import utils.listeners.TestNgListener;
 
 @Listeners(TestNgListener.class)
@@ -10,6 +11,15 @@ public class MMT_Review extends BaseClass {
 
     WebDriver driver;
     TestNgListener testNgListener = new TestNgListener();
+    String firstName = Config.getFirstName();
+    String lastName = Config.getLastName();
+    String email = Config.getEmail();
+    String phone = Config.getMobileNo();
+    String country = Config.getCountry();
+    String city = Config.getCity();
+    String rating = Config.getRating();
+    String leasire = Config.getRating();
+
 
     @BeforeClass
     public void setup() {
@@ -20,35 +30,38 @@ public class MMT_Review extends BaseClass {
 
     @BeforeMethod
     public void init() {
-        driver.get("https://www.makemytrip.com/");
+        driver.get(Config.getUrl());
     }
 
     @Test
     public void TTT_Atuomation() {
-        String firstName = "jk";
-        String lastName = "kl";
-        String email = "jk@yopmail.com";
-        String phone = "9898989898";
+
         String windowHandle = driver.getWindowHandle();
-        //homePage.login("", "");
+        homePage.selectCountry(country);
+        homePage.getLoginFrame();
+        homePage.login(Config.getUserName(), Config.getPassword());
+        homePage.checkLoggedInUser();
 
         //hotel filter
         hotelsPage.selectHotelMenu();
-        hotelsPage.selectCity("Hyderabad");  //TODO: need to remove static waits
+        hotelsPage.selectCity(city);
         hotelsPage.selectRndVacationDates();
         hotelsPage.selectAdultAndChildCount(2, 2);
 
         hotelsPage.addRoom();
         hotelsPage.selectAdultAndChildCount(2, 2);
+        hotelsPage.getTravelingFor(leasire);
+
         hotelsPage.clickApplyButton();
         String actualCheckInDate = hotelsPage.getCheckInDate();
         String actualCheckOutDate = hotelsPage.getCheckOutDate();
         hotelsPage.searchHotels();
 
+        hotelSearchResultsPage.dismissLocationPopUp();
         hotelSearchResultsPage.selectMinPriceRangeFromFilter(1000);
 
         //hotels search
-        hotelSearchResultsPage.selectUserRating("4 & above (Very Good)");
+        hotelSearchResultsPage.selectUserRating(rating);
         String actualHotelName = hotelSearchResultsPage.selectHotel(5);
         hotelSearchResultsPage.switchToNewTab(windowHandle);
 
@@ -90,9 +103,6 @@ public class MMT_Review extends BaseClass {
         testNgListener.assertFailAndContinue(driver, expectedRoomType.contains(firstRoomType), "Expected room type not matched with actual");
         testNgListener.assertFailAndContinue(driver, actualPrice.contains(expectedFinalPrice), "Expected price not matched with actual");
 
-
-        //exp check in date  > 16 Sep ' 2020 Wed
-        //actual exp date> 16 Sep20
     }
 
     @AfterClass

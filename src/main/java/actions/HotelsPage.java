@@ -1,5 +1,8 @@
 package actions;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
@@ -57,6 +60,11 @@ public class HotelsPage extends SafeElementsActions implements HotelsRepo {
         click(childCountLocator);
     }
 
+    public void getTravelingFor(String reason) {
+        click(travelForOption);
+        click(travelForLeisure);
+    }
+
     public void clickApplyButton() {
         if (waitUntilElementDisplayed(applyButton, 5))
             click(applyButton);
@@ -71,10 +79,24 @@ public class HotelsPage extends SafeElementsActions implements HotelsRepo {
     }
 
     public String getCheckInDate() {
-        return getText(checkInDate);
+        return convertDate(checkInDate);
+    }
+
+    private String convertDate(By checkInDate) {
+        String sDate1 = getText(checkInDate);
+        SimpleDateFormat formatter1 = new SimpleDateFormat("ddMMMyy");
+        SimpleDateFormat formatter2 = new SimpleDateFormat("dd/MMM/yyyy");
+        sDate1 = sDate1.replace("'", "").replace("  ", "").replace(" ", "");
+        Date date = null;
+        try {
+            date = formatter1.parse(sDate1);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return formatter2.format(date);
     }
 
     public String getCheckOutDate() {
-        return getText(checkOutDate);
+        return convertDate(checkOutDate);
     }
 }

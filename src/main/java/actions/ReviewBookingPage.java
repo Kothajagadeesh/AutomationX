@@ -41,6 +41,7 @@ public class ReviewBookingPage extends SafeElementsActions implements ReviewBook
     }
 
     public void enterEmailID(String sEmailID) {
+        clear(emailIDField);
         clearAndFillText(emailIDField, sEmailID);
     }
 
