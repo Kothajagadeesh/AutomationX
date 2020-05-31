@@ -34,15 +34,13 @@ public class HotelSearchResultsPage extends SafeElementsActions implements Hotel
         hotelsLoading();
     }
 
-    public void dismissLocationPopUp(){
-        if(waitUntilElementDisplayed(locationPopUp, 10)){
+    public void dismissLocationPopUp() {
+        if (waitUntilElementDisplayed(locationPopUp, 10)) {
             driver.navigate().refresh();
         }
     }
 
     public void selectMinPriceRangeFromFilter(int minPriceRange) {
-        waitUntilElementDisplayed(sliderMinRange, 10);
-        driver.navigate().refresh();
         waitUntilElementDisplayed(sliderMinRange, 10);
         Actions ac = new Actions(driver);
         switch (minPriceRange) {

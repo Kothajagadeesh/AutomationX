@@ -1,12 +1,10 @@
-package utils.listeners;
+package utils;
 
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.testng.*;
-import utils.extentHandle.ExtentManager;
-import utils.ScreenShotCapture;
 
 public class TestNgListener extends ExtentManager implements ITestListener, ISuiteListener, IClassListener {
     ScreenShotCapture sc;

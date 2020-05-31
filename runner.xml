@@ -5,12 +5,12 @@
 <suite name="Sample suite" parallel="classes" thread-count="1" configfailurepolicy="continue">
 
     <listeners>
-        <listener class-name="utils.listeners.TestNgListener"/>
+        <listener class-name="utils.TestNgListener"/>
     </listeners>
 
     <test thread-count="2" name="test">
         <classes>
-            <class name="tests.SampleTest"/>
+            <class name="tests.MMT_HotelsBooking"/>
         </classes>
     </test>
 

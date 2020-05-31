@@ -51,38 +51,12 @@ public class BookingSummaryPage extends SafeElementsActions implements BookingSu
         return getText(finalAmmount);
     }
 
-    public String getPaymentAmount() {
-        return getText(hotelName);
-    }
-
     public String getCheckInTime() {
         return convertDate(checkInTime);
     }
 
     public String getCheckOutTime() {
         return convertDate(checkOutTime);
-    }
-
-    public ArrayList<String> roomsInfo() {
-        ArrayList<String> roomNames = null;
-        List<WebElement> rooms = driver.findElements(roomsInfo);
-        for (WebElement room : rooms)
-            roomNames.add(room.getText());
-
-        return roomNames;
-    }
-
-    public ArrayList<String> adultsInfo() {
-        ArrayList<String> adultNames = null;
-        List<WebElement> adults = driver.findElements(adultsInfo);
-        for (WebElement adult : adults)
-            adultNames.add(adult.getText());
-
-        return adultNames;
-    }
-
-    public String getPriceBreakUpInfo() {
-        return getText(priceBreakUp);
     }
 
     private String convertDate(By checkInDate) {

@@ -61,6 +61,7 @@ public class SafeElementsActions {
      */
     public String getCssvalue(By locator, String cssProperty) {
         waitUntilElementDisplayed(locator);
+        logger.info("getting css value for locaor " + locator);
         return driver.findElement(locator).getCssValue(cssProperty);
     }
 
@@ -72,6 +73,7 @@ public class SafeElementsActions {
      * @return The innerText of this driver.findElement(locator).
      */
     public String getText(By locator) {
+        logger.info("getting Text for locaor " + locator);
         return driver.findElement(locator).getText();
     }
 
@@ -82,6 +84,7 @@ public class SafeElementsActions {
      * @return The tag name of this driver.findElement(locator).
      */
     public String getTagName(By locator) {
+        logger.info("getting tag name for locaor " + locator);
         waitUntilElementDisplayed(locator);
         try {
             return driver.findElement(locator).getTagName();
@@ -98,6 +101,7 @@ public class SafeElementsActions {
      * @return Whether or not the locator is displayed
      */
     public boolean isDisplayed(By locator) {
+        logger.info("Checking element visibility" + locator);
         try {
             return driver.findElement(locator).isDisplayed();
         } catch (NoSuchElementException e) {
@@ -112,6 +116,7 @@ public class SafeElementsActions {
      * @return True if the locator is enabled, false otherwise.
      */
     public boolean isEnabled(By locator) {
+        logger.info("Checking element enable" + locator);
         try {
             return driver.findElement(locator).isEnabled();
         } catch (Exception e) {
@@ -127,7 +132,8 @@ public class SafeElementsActions {
      * @return True if the locator is currently selected or checked, false otherwise
      */
     public boolean isSelected(By locator) {
-        waitUntilElementDisplayed(locator);
+        logger.info("Checking element selection" + locator);
+        waitUntilElementDisplayed(locator, 5);
         try {
             return driver.findElement(locator).isSelected();
         } catch (Exception e) {
@@ -142,6 +148,7 @@ public class SafeElementsActions {
      * @param text    to send to the element
      */
     public void fillText(By locator, String text) {
+        logger.info("entering text in element field" + locator);
         waitUntilElementDisplayed(locator);
         try {
             driver.findElement(locator).sendKeys(text);
@@ -157,6 +164,7 @@ public class SafeElementsActions {
      * @param text    to send to the element
      */
     public void clearAndFillText(By locator, String text) {
+        logger.info("clearing and entering text in element field" + locator);
         try {
             driver.findElement(locator).clear();
             driver.findElement(locator).sendKeys(text);
@@ -172,6 +180,7 @@ public class SafeElementsActions {
      * @param locator to be found
      */
     public void submit(By locator) {
+        logger.info("submit form" + locator);
         try {
             driver.findElement(locator).submit();
         } catch (NoSuchElementException e) {
@@ -187,6 +196,7 @@ public class SafeElementsActions {
      */
     public boolean waitUntilElementDisplayed(By locator) {
         try {
+            logger.info("checking element" + locator);
             return new WebDriverWait(driver, 20).until(ExpectedConditions.visibilityOfElementLocated(locator)).isDisplayed();
         } catch (Exception e) {
             logger.info("Element - " + locator + " is not found after 20 seconds wait");
@@ -201,6 +211,7 @@ public class SafeElementsActions {
      * @return True if elemenet is found
      */
     public boolean waitUntilElementDisplayed(By locator, int timeout) {
+        logger.info("entering text in element field " + locator + " with timeout " + timeout);
         try {
             new WebDriverWait(driver, timeout).until(ExpectedConditions.visibilityOfElementLocated(locator));
             return true;
@@ -217,6 +228,7 @@ public class SafeElementsActions {
      * @param index         to be selected
      */
     public void selectDropDownByIndex(WebElement selectElement, int index) {
+        logger.info("select value from select drop-down with index" + index);
         Select dropdown = new Select(selectElement);
         dropdown.selectByIndex(index);
     }
@@ -228,6 +240,7 @@ public class SafeElementsActions {
      * @param dropDownText  to select
      */
     public void selectDropDownByVisibleText(WebElement selectElement, String dropDownText) {
+        logger.info("select value from select drop-down with visible text" + dropDownText);
         Select dropdown = new Select(selectElement);
         dropdown.selectByVisibleText(dropDownText);
     }
@@ -239,6 +252,7 @@ public class SafeElementsActions {
      * @param dropDownText  css value
      */
     public void selectDropDownByValue(WebElement selectElement, String dropDownText) {
+        logger.info("select value from select drop-down with value" + dropDownText);
         Select dropdown = new Select(selectElement);
         dropdown.selectByValue(dropDownText);
     }
@@ -252,44 +266,11 @@ public class SafeElementsActions {
     }
 
     public void staticWait(int time) {
+        logger.info("Sleeping script for time " + time + " second");
         try {
             Thread.sleep(time);
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    public static By getDynamicLocator(By locator, String dynamicText)
-    {
-        String locatorType = locator.toString().split(": ")[0].split("\\.")[1];
-        String newLocatorString = String.format(locator.toString().split(": ")[1],dynamicText);
-        switch(locatorType)
-        {
-            case "xpath":
-                locator = By.xpath(newLocatorString);
-                break;
-            case "cssSelector":
-                locator = By.cssSelector(newLocatorString);
-                break;
-            case "id":
-                locator = By.id(newLocatorString);
-                break;
-            case "className":
-                locator = By.className(newLocatorString);
-                break;
-            case "name":
-                locator = By.name(newLocatorString);
-                break;
-            case "linkText":
-                locator = By.linkText(newLocatorString);
-                break;
-            case "partialLinkText":
-                locator = By.partialLinkText(newLocatorString);
-                break;
-            case "tagName":
-                locator = By.tagName(newLocatorString);
-                break;
-        }
-        return locator;
     }
 }

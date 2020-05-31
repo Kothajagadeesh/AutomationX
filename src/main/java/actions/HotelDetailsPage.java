@@ -6,8 +6,7 @@ import org.openqa.selenium.WebElement;
 import repo.HotelDetailsRepo;
 import utils.SafeElementsActions;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class HotelDetailsPage extends SafeElementsActions implements HotelDetailsRepo {
 
@@ -19,10 +18,6 @@ public class HotelDetailsPage extends SafeElementsActions implements HotelDetail
         this.driver = driver;
     }
 
-    public String getHotelName() {
-        return getText(hotelName);
-    }
-
     public void clickRoomsTab() {
         click(roomsTab);
     }
@@ -31,10 +26,10 @@ public class HotelDetailsPage extends SafeElementsActions implements HotelDetail
         return getText(hotelLocation);
     }
 
-    public List<String> getNthRoomType(int roomNumber) {
+    public Set<String> getNthRoomType(int roomNumber) {
         List<WebElement> roomTypes = driver.findElements(roomsType);
-        List<String> selectedRooms = new ArrayList<>();
-        selectedRooms.add(roomTypes.get(roomNumber-1).getText());
+        Set<String> selectedRooms = new HashSet<>();
+        selectedRooms.add(roomTypes.get(roomNumber - 1).getText());
         return selectedRooms;
     }
 
@@ -43,17 +38,20 @@ public class HotelDetailsPage extends SafeElementsActions implements HotelDetail
         selectRoomButtons.get(0).click();
     }
 
-    public List selectRoom(int roomNumber){
+    public Set<String> selectRoom(int roomNumber) {
         List<WebElement> makeRoomChoice = driver.findElements(makeOwnChoiceHeader);
         List<WebElement> comboRoomsType = driver.findElements(comboRoomType);
-        List<String> selectedRooms = new ArrayList<>();
-        if(makeRoomChoice.size() > 0){
-            for(int i=0;i<comboRoomsType.size()-1;i++){
-                selectedRooms.add(comboRoomsType.get(i).getText());
+        Set<String> selectedRooms = new HashSet<>();
+        if (makeRoomChoice.size() > 0) {
+            for (int i = 0; i < comboRoomsType.size() - 1; i++) {
+                String value = comboRoomsType.get(i).getText();
+                selectedRooms.add(value);
             }
-        }
-        else{
+            click(bookComboButton);
+
+        } else {
             selectedRooms = getNthRoomType(roomNumber);
+            selectFirstRoom();
         }
         return selectedRooms;
     }

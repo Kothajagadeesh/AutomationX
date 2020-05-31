@@ -17,18 +17,10 @@ public class ReviewBookingPage extends SafeElementsActions implements ReviewBook
     }
 
     public void closeModalIfExists() {
+        waitUntilElementDisplayed(modal, 60);
         List<WebElement> modalDialog = driver.findElements(modal);
         if (modalDialog.size() > 0)
             click(modalClose);
-    }
-
-    public boolean isHeaderExists() {
-        return isDisplayed(reviewBookingHeader);
-    }
-
-    public void setTitle() {
-        click(titleList);
-        click(titleListOption);
     }
 
     public void enterName(String sFname, String sLanme) {
@@ -61,28 +53,14 @@ public class ReviewBookingPage extends SafeElementsActions implements ReviewBook
     }
 
     public boolean isDonationChecked() {
-        return isSelected(donationCheckbox);
+        return isSelected(donationCheckboxTest);
     }
 
     public void setDonationCheckbox(boolean checkIt) {
         boolean alreadySelected = isDonationChecked();
-
         //only click if the test's intent does not match the current state
         if ((checkIt && !alreadySelected) || (!checkIt && alreadySelected)) {
             click(donationCheckboxTest);
-        }
-    }
-
-    public boolean isAgreeChecked() {
-        return isSelected(agreeCheckbox);
-    }
-
-    public void setAgreeCheckbox(boolean checkIt) {
-        boolean alreadySelected = isAgreeChecked();
-
-        //only click if the test's intent does not match the current state
-        if ((checkIt && !alreadySelected) || (!checkIt && alreadySelected)) {
-            click(agreeCheckbox);
         }
     }
 

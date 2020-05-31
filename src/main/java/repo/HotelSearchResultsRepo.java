@@ -9,5 +9,4 @@ public interface HotelSearchResultsRepo {
     By hotelNames = By.cssSelector("div.listingRowOuter p#hlistpg_hotel_name>span[id^='htl_id']"); //get list of hotels. If count is < x then scroll and again get hotels.
     By sliderMinRange = By.cssSelector("div.input-range__slider");
     By locationPopUp = By.cssSelector(".whiteText.latoBlack.font22");
-    By searchBar = By.cssSelector(".react-autosuggest__input");
 }

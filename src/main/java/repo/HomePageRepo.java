@@ -7,7 +7,6 @@ public interface HomePageRepo {
 	By countrySelect = By.className("ctrySelect");
 	By countryList = By.className("div.ctryList span.countryName");
 	By accountButton = By.cssSelector("li[data-cy='account']");
-	By loginModal = By.className("modalMain");
 	By usernameField = By.id("username");
 	By passwordField = By.id("password");
 	By continueButton = By.cssSelector("button[data-cy='continueBtn']");
