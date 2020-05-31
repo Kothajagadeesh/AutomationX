@@ -2,6 +2,7 @@ package tests;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.*;
 import utils.BaseClass;
 import utils.listeners.TestNgListener;
@@ -22,7 +23,7 @@ public class SampleTest extends BaseClass {
 
     @BeforeMethod
     public void openBrowser() {
-        driver.get("http://www.google.com");
+        driver.get("https://www.makemytrip.com/hotels/hotel-listing/?_uCurrency=INR&checkin=06012020&checkout=06022020&city=CTGOI&country=IN&locusId=CTGOI&locusType=city&roomStayQualifier=2e0e&searchText=Goa%2C%20India&visitorId=137b3a9d-94b9-4e6b-bbd2-fbb48b3e344e");
     }
 
     /*@Test
@@ -34,12 +35,15 @@ public class SampleTest extends BaseClass {
 
     @Test
     public void googleType2() throws InterruptedException {
-        By na = By.name("q");
+        By na = By.cssSelector("div.input-range__slider");
         //driver.findElement(By.name("q")).sendKeys("hello world");
-        homePage.fillText(na, "test");
+        Actions ac = new Actions(driver);
+        ac.dragAndDropBy(driver.findElement(na),8,0).build().perform();
+                //homePage.fillText(na, "test");
+        driver.navigate().refresh();
 
         //testNgListener3.logWarning("This method is for entering warning message");
-        testNgListener3.AssertFailAndContinue(driver, 1 == 2, "checking Test1 assertion");
+        testNgListener3.AssertFailAndContinue(driver, 1 == 1, "checking Test1 assertion");
     }
 
     @AfterClass
