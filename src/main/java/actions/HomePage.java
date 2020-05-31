@@ -3,6 +3,7 @@ package actions;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -19,11 +20,11 @@ public class HomePage extends SafeElementsActions implements HomePageRepo {
         this.driver = driver;
     }
 
-    public void selectCountry() {
+    public void selectCountry(String sCountry) {
         click(countrySelect);
         List<WebElement> countries = driver.findElements(countryList);
         for (WebElement country : countries)
-            if (country.getText().equals("India"))
+            if (country.getText().equals(sCountry))
                 country.click();
     }
 
@@ -31,16 +32,18 @@ public class HomePage extends SafeElementsActions implements HomePageRepo {
         click(accountButton);
     }
 
-    public void enterUserName() {
-        fillText(usernameField, Config.getUserName());
+    public void enterUserName(String userName) {
+        fillText(usernameField, userName);
     }
 
-    public void enterPassword() {
-        fillText(usernameField, Config.getPassword());
+    public void enterPassword(String sPassword) {
+        fillText(passwordField, sPassword);
     }
 
     public void clickContinueButton() {
-        click(continueButton);
+        waitUntilElementDisplayed(continueButton);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", driver.findElement(continueButton));
+        //click(continueButton);
     }
 
     public void clickLoginButton() {
@@ -48,9 +51,13 @@ public class HomePage extends SafeElementsActions implements HomePageRepo {
     }
 
     public void login(String sUserName, String sPassword) {
-        enterUserName();
+        enterUserName(sUserName);
         clickContinueButton();
-        enterPassword();
+        enterPassword(sPassword);
         clickLoginButton();
+    }
+
+    public void checkLoggedInUser(){
+        waitUntilElementDisplayed(loggedInUser,20);
     }
 }
