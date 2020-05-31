@@ -10,10 +10,6 @@ Extent Reports > For Reports
 
 Git > Version Control
 
-**Git Url**
-
-https://github.com/Kothajagadeesh/AutomationX.git
-
 **Running Scripts from IDE**
 
 Select desired profiles from maven profile and run runner.xml
