@@ -136,6 +136,48 @@
                 <env.browser>chrome</env.browser>
             </properties>
         </profile>
+
+        <profile>
+            <id>ie-local</id>
+            <activation>
+                <property>
+                    <name>env</name>
+                    <value>ie-local</value>
+                </property>
+            </activation>
+            <properties>
+                <env.execType>local</env.execType>
+                <env.browser>ie</env.browser>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>edge-local</id>
+            <activation>
+                <property>
+                    <name>env</name>
+                    <value>edge-local</value>
+                </property>
+            </activation>
+            <properties>
+                <env.execType>local</env.execType>
+                <env.browser>edge</env.browser>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>opera-local</id>
+            <activation>
+                <property>
+                    <name>env</name>
+                    <value>opera-local</value>
+                </property>
+            </activation>
+            <properties>
+                <env.execType>local</env.execType>
+                <env.browser>opera</env.browser>
+            </properties>
+        </profile>
     </profiles>
 
 
