@@ -1,12 +1,12 @@
 package actions;
 
 import org.apache.log4j.Logger;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import repo.HotelDetailsRepo;
 import utils.SafeElementsActions;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class HotelDetailsPage extends SafeElementsActions implements HotelDetailsRepo {
@@ -31,13 +31,30 @@ public class HotelDetailsPage extends SafeElementsActions implements HotelDetail
         return getText(hotelLocation);
     }
 
-    public String getFirstRoomType() {
+    public List<String> getNthRoomType(int roomNumber) {
         List<WebElement> roomTypes = driver.findElements(roomsType);
-        return roomTypes.get(0).getText();
+        List<String> selectedRooms = new ArrayList<>();
+        selectedRooms.add(roomTypes.get(roomNumber-1).getText());
+        return selectedRooms;
     }
 
     public void selectFirstRoom() {
         List<WebElement> selectRoomButtons = driver.findElements(selectRoomButton);
         selectRoomButtons.get(0).click();
+    }
+
+    public List selectRoom(int roomNumber){
+        List<WebElement> makeRoomChoice = driver.findElements(makeOwnChoiceHeader);
+        List<WebElement> comboRoomsType = driver.findElements(comboRoomType);
+        List<String> selectedRooms = new ArrayList<>();
+        if(makeRoomChoice.size() > 0){
+            for(int i=0;i<comboRoomsType.size()-1;i++){
+                selectedRooms.add(comboRoomsType.get(i).getText());
+            }
+        }
+        else{
+            selectedRooms = getNthRoomType(roomNumber);
+        }
+        return selectedRooms;
     }
 }
