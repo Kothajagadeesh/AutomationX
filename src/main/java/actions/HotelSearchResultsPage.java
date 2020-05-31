@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import repo.HotelSearchResultsRepo;
 import utils.SafeElementsActions;
+
 import java.util.List;
 
 public class HotelSearchResultsPage extends SafeElementsActions implements HotelSearchResultsRepo {
@@ -20,34 +21,33 @@ public class HotelSearchResultsPage extends SafeElementsActions implements Hotel
         this.driver = driver;
     }
 
-    public void selectUserRating(String sRating){
+    public void selectUserRating(String sRating) {
         List<WebElement> ratings = driver.findElements(userRatingLabels);
-        for (int i=0; i<ratings.size()-1;i++) {
+        for (int i = 0; i < ratings.size() - 1; i++) {
             String userRating = ratings.get(i).getText();
-            if (userRating.contains(sRating)){
+            if (userRating.contains(sRating)) {
                 ratings.get(i).click();
             }
         }
     }
 
-    public void hotelsLoading(){
+    public void hotelsLoading() {
         List<WebElement> loadingSymbol = driver.findElements(hotelsLoading);
-        WebDriverWait wait = new WebDriverWait(driver,20);
-        if (loadingSymbol.size()>0)
+        WebDriverWait wait = new WebDriverWait(driver, 20);
+        if (loadingSymbol.size() > 0)
             wait.until(ExpectedConditions.invisibilityOfElementLocated(hotelsLoading));
     }
 
-    public String selectHotel(int result){
+    public String selectHotel(int result) {
         String selectedHotel = "";
-        for(int i=0;i<5;i++) {
+        for (int i = 0; i < 5; i++) {
             List<WebElement> hotelResults = driver.findElements(hotelNames);
             JavascriptExecutor js = (JavascriptExecutor) driver;
             if (hotelResults.size() >= result) {
                 hotelResults.get(result - 1).click();
-                selectedHotel = hotelResults.get(result-1).getText();
+                selectedHotel = hotelResults.get(result - 1).getText();
                 break;
-            }
-            else
+            } else
                 js.executeScript("window.scrollBy(0,1000)");
         }
         return selectedHotel;
