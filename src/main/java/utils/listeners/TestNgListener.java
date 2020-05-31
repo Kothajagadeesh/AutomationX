@@ -53,12 +53,12 @@ public class TestNgListener extends ExtentManager implements ITestListener, ISui
 
     public synchronized void AssertFailAndContinue(WebDriver driver, boolean result, String description) {
         try {
+            String s = System.getProperty("user.dir") + screenshotDir + description.replaceAll(" ", "_") + ".png";
+            sc = new ScreenShotCapture(driver);
+            sc.captureScreenshot(s);
             if (result) {
                 childTest.log(Status.PASS, description);
             } else {
-                String s = System.getProperty("user.dir") + screenshotDir + description.replaceAll(" ", "_") + ".png";
-                sc = new ScreenShotCapture(driver);
-                sc.captureScreenshot(s);
                 childTest.log(Status.FAIL, description, MediaEntityBuilder.createScreenCaptureFromPath(s).build());
                 ITestResult result1 = Reporter.getCurrentTestResult();
                 result1.setStatus(2);

@@ -2,13 +2,11 @@ package tests;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import utils.BaseClass;
 import utils.listeners.TestNgListener;
 
+@Listeners(TestNgListener.class)
 public class SampleTest extends BaseClass {
 
     WebDriver driver;
@@ -16,6 +14,7 @@ public class SampleTest extends BaseClass {
 
     @BeforeClass
     public void setUp() {
+        initDriver();
         driver = getDriver();
         initPages(driver);
     }
@@ -35,7 +34,9 @@ public class SampleTest extends BaseClass {
 
     @Test
     public void googleType2() throws InterruptedException {
-        driver.findElement(By.name("q")).sendKeys("hello world");
+        By na = By.name("q");
+        //driver.findElement(By.name("q")).sendKeys("hello world");
+        homePage.fillText(na, "test");
 
         //testNgListener3.logWarning("This method is for entering warning message");
         testNgListener3.AssertFailAndContinue(driver, 1 == 2, "checking Test1 assertion");

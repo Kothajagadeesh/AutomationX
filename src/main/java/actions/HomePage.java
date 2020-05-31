@@ -11,7 +11,7 @@ public class HomePage extends SafeElementsActions implements HomePageRepo {
     Logger logger = Logger.getLogger(HomePage.class);
 
     public HomePage(WebDriver driver) {
+        super(driver);
         this.driver = driver;
-        //setDriver(driver);
     }
 }

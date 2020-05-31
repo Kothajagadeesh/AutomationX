@@ -12,7 +12,7 @@ public class HotelsPage extends SafeElementsActions implements HotelsRepo {
     Logger logger = Logger.getLogger(HotelsPage.class);
 
     public HotelsPage(WebDriver driver) {
+        super(driver);
         this.driver = driver;
-        //setDriver(driver);
     }
 }

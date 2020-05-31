@@ -100,37 +100,82 @@
             <artifactId>log4j</artifactId>
             <version>1.2.17</version>
         </dependency>
-
+        <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-log4j12 -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.7.30</version>
+        </dependency>
     </dependencies>
 
     <profiles>
         <profile>
-            <id>prod-firefox-local</id>
+            <id>firefox-local</id>
             <activation>
                 <property>
                     <name>env</name>
-                    <value>prod-firefox-local</value>
+                    <value>firefox-local</value>
                 </property>
             </activation>
             <properties>
-                <env.profile>prod</env.profile>
                 <env.execType>local</env.execType>
                 <env.browser>firefox</env.browser>
             </properties>
         </profile>
 
         <profile>
-            <id>prod-chrome-local</id>
+            <id>chrome-local</id>
             <activation>
                 <property>
                     <name>env</name>
-                    <value>prod-chrome-local</value>
+                    <value>chrome-local</value>
                 </property>
             </activation>
             <properties>
-                <env.profile>prod</env.profile>
                 <env.execType>local</env.execType>
                 <env.browser>chrome</env.browser>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>ie-local</id>
+            <activation>
+                <property>
+                    <name>env</name>
+                    <value>ie-local</value>
+                </property>
+            </activation>
+            <properties>
+                <env.execType>local</env.execType>
+                <env.browser>ie</env.browser>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>edge-local</id>
+            <activation>
+                <property>
+                    <name>env</name>
+                    <value>edge-local</value>
+                </property>
+            </activation>
+            <properties>
+                <env.execType>local</env.execType>
+                <env.browser>edge</env.browser>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>opera-local</id>
+            <activation>
+                <property>
+                    <name>env</name>
+                    <value>opera-local</value>
+                </property>
+            </activation>
+            <properties>
+                <env.execType>local</env.execType>
+                <env.browser>opera</env.browser>
             </properties>
         </profile>
     </profiles>

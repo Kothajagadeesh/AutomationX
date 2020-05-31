@@ -1,16 +1,13 @@
 package actions;
 
 import org.apache.log4j.Logger;
-import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import repo.HotelSearchResultsRepo;
 import utils.SafeElementsActions;
-
 import java.util.List;
 
 public class HotelSearchResultsPage extends SafeElementsActions implements HotelSearchResultsRepo {
@@ -19,8 +16,8 @@ public class HotelSearchResultsPage extends SafeElementsActions implements Hotel
     Logger logger = Logger.getLogger(HotelSearchResultsPage.class);
 
     public HotelSearchResultsPage(WebDriver driver) {
+        super(driver);
         this.driver = driver;
-        //setDriver(driver);
     }
 
     public void selectUserRating(String sRating){
