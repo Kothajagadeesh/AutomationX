@@ -178,7 +178,23 @@
                 <env.browser>opera</env.browser>
             </properties>
         </profile>
+
+        <profile>
+            <id>chrome-headspin</id>
+            <activation>
+                <property>
+                    <name>env</name>
+                    <value>chrome-headspin</value>
+                </property>
+            </activation>
+            <properties>
+                <env.execType>headspin</env.execType>
+                <env.browser>chrome</env.browser>
+            </properties>
+        </profile>
     </profiles>
+
+
 
 
 </project>
