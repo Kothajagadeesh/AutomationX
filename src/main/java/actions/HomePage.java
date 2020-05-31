@@ -50,4 +50,11 @@ public class HomePage extends SafeElementsActions implements HomePageRepo {
     {
     	click(loginButton);
     }
+
+    public void login(String sUserName, String sPassword){
+        enterUserName();
+        clickContinueButton();
+        enterPassword();
+        clickLoginButton();
+    }
 }
