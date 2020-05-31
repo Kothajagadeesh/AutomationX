@@ -21,6 +21,11 @@ public class MMT_HotelsBooking extends BaseClass {
     String city = Config.getCity();
     String rating = Config.getRating();
     String leasire = Config.getRating();
+    String largeBed = Config.getLargeBed();
+    String twinBed = Config.getTwinBed();
+    int minPriceRange = Config.getMinPriceRange();
+    int adult_count = 2;
+    int child_count = 2;
 
 
     @BeforeClass
@@ -42,10 +47,10 @@ public class MMT_HotelsBooking extends BaseClass {
         hotelsPage.selectHotelMenu();
         hotelsPage.selectCity(city);
         hotelsPage.selectRndVacationDates();
-        hotelsPage.selectAdultAndChildCount(2, 2);
+        hotelsPage.selectAdultAndChildCount(adult_count, child_count);
 
         hotelsPage.addRoom();
-        hotelsPage.selectAdultAndChildCount(2, 2);
+        hotelsPage.selectAdultAndChildCount(adult_count, child_count);
         hotelsPage.clickApplyButton();
         hotelsPage.getTravelingFor(leasire);
 
@@ -54,7 +59,7 @@ public class MMT_HotelsBooking extends BaseClass {
         hotelsPage.searchHotels();
 
         hotelSearchResultsPage.dismissLocationPopUp();
-        hotelSearchResultsPage.selectMinPriceRangeFromFilter(1000);
+        hotelSearchResultsPage.selectMinPriceRangeFromFilter(minPriceRange);
 
         //hotels search
         hotelSearchResultsPage.selectUserRating(rating);
@@ -72,8 +77,8 @@ public class MMT_HotelsBooking extends BaseClass {
         reviewBookingPage.enterEmailID(email);
         reviewBookingPage.enterIndianMobile(phone);
 
-        reviewBookingPage.selectCommonRequests("Large bed");
-        reviewBookingPage.selectCommonRequests("Twin beds");
+        reviewBookingPage.selectCommonRequests(largeBed);
+        reviewBookingPage.selectCommonRequests(twinBed);
 
         reviewBookingPage.setDonationCheckbox(false);
         String actualPrice = reviewBookingPage.getTotalPrice();
@@ -113,10 +118,10 @@ public class MMT_HotelsBooking extends BaseClass {
         hotelsPage.selectHotelMenu();
         hotelsPage.selectCity(city);
         hotelsPage.selectRndVacationDates();
-        hotelsPage.selectAdultAndChildCount(2, 2);
+        hotelsPage.selectAdultAndChildCount(adult_count, child_count);
 
         hotelsPage.addRoom();
-        hotelsPage.selectAdultAndChildCount(2, 2);
+        hotelsPage.selectAdultAndChildCount(adult_count, child_count);
         hotelsPage.clickApplyButton();
         hotelsPage.getTravelingFor(leasire);
 
@@ -125,7 +130,7 @@ public class MMT_HotelsBooking extends BaseClass {
         hotelsPage.searchHotels();
 
         hotelSearchResultsPage.dismissLocationPopUp();
-        hotelSearchResultsPage.selectMinPriceRangeFromFilter(1000);
+        hotelSearchResultsPage.selectMinPriceRangeFromFilter(minPriceRange);
 
         //hotels search
         hotelSearchResultsPage.selectUserRating(rating);
@@ -143,8 +148,8 @@ public class MMT_HotelsBooking extends BaseClass {
         reviewBookingPage.enterEmailID(email);
         reviewBookingPage.enterIndianMobile(phone);
 
-        reviewBookingPage.selectCommonRequests("Large bed");
-        reviewBookingPage.selectCommonRequests("Twin beds");
+        reviewBookingPage.selectCommonRequests(largeBed);
+        reviewBookingPage.selectCommonRequests(twinBed);
 
         reviewBookingPage.setDonationCheckbox(false);
         String actualPrice = reviewBookingPage.getTotalPrice();
@@ -167,9 +172,8 @@ public class MMT_HotelsBooking extends BaseClass {
         testNgListener.assertFailAndContinue(driver, expectedCheckOutDate.contains(actualCheckOutDate), "Expected hotel location not matched with actual");
         testNgListener.assertFailAndContinue(driver, expectedFullName.equalsIgnoreCase(firstName + " " + lastName), "Expected full name not matched with actual");
         testNgListener.assertFailAndContinue(driver, expectedContactInfo.equalsIgnoreCase(phone + ", " + email), "Expected contact info not matched with actual");
-        //testNgListener.assertFailAndContinue(driver, rooms.contains(expectedRoomType), "Expected room type not matched with actual");
+        testNgListener.assertFailAndContinue(driver, rooms.contains(expectedRoomType), "Expected room type not matched with actual");
         testNgListener.assertFailAndContinue(driver, actualPrice.contains(expectedFinalPrice), "Expected price not matched with actual");
-
     }
 
     @AfterClass

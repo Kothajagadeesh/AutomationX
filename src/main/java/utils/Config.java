@@ -20,6 +20,9 @@ public class Config {
     public static final String BASE_URL = "base_url";
     public static final String IMPLICIT_WAIT = "selenium.element.implicitwait";
     public static final String TIMEOUT = "selenium.element.mintimeout";
+    public static final String LARGE_BED = "large_bed_req";
+    public static final String TWIN_BED = "twin_bed_req";
+    public static final String MIN_RANGE = "minRange";
 
 
     public static final String PASSWORD = "password";
@@ -165,6 +168,24 @@ public class Config {
         return configuration.getString(BASE_URL);
     }
 
+    public static String getLargeBed() {
+        try {
+            configuration = new PropertiesConfiguration((loadAndGetResourceLocation(configFile)));
+        } catch (ConfigurationException e) {
+            e.printStackTrace();
+        }
+        return configuration.getString(LARGE_BED);
+    }
+
+    public static String getTwinBed() {
+        try {
+            configuration = new PropertiesConfiguration((loadAndGetResourceLocation(configFile)));
+        } catch (ConfigurationException e) {
+            e.printStackTrace();
+        }
+        return configuration.getString(TWIN_BED);
+    }
+
     public static int getTimeOut() {
         try {
             configuration = new PropertiesConfiguration((loadAndGetResourceLocation(configFile)));
@@ -181,5 +202,14 @@ public class Config {
             e.printStackTrace();
         }
         return configuration.getInt(IMPLICIT_WAIT);
+    }
+
+    public static int getMinPriceRange() {
+        try {
+            configuration = new PropertiesConfiguration((loadAndGetResourceLocation(configFile)));
+        } catch (ConfigurationException e) {
+            e.printStackTrace();
+        }
+        return configuration.getInt(MIN_RANGE);
     }
 }
