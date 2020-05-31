@@ -18,32 +18,36 @@ public class HomePage extends SafeElementsActions implements HomePageRepo {
         super(driver);
         this.driver = driver;
     }
-
-    public void selectCountry() {
-        click(countrySelect);
-        List<WebElement> countries = driver.findElements(countryList);
-        for (WebElement country : countries)
-            if (country.getText().equals("India"))
-                country.click();
+    
+    public void selectCountry()
+    {
+    	click(countrySelect);
+    	List<WebElement> countries = driver.findElements(countryList);
+    	for(WebElement country: countries)
+    		if(country.getText().equals("India"))
+    			country.click();
     }
-
-    public void getLoginFrame() {
-        click(accountButton);
+    
+    public void getLoginFrame()
+    {
+    	click(accountButton);
     }
-
+    
     public void enterUserName() {
-        fillText(usernameField, Config.getUserName());
+    	fillText(usernameField, Config.getUserName());
     }
-
+    
     public void enterPassword() {
-        fillText(usernameField, Config.getPassword());
+    	fillText(usernameField, Config.getPassword());
     }
-
-    public void clickContinueButton() {
-        click(continueButton);
+    
+    public void clickContinueButton()
+    {
+    	click(continueButton);
     }
-
-    public void clickLoginButton() {
-        click(loginButton);
+    
+    public void clickLoginButton()
+    {
+    	click(loginButton);
     }
 }

@@ -1,7 +1,6 @@
 package repo;
 
 import org.openqa.selenium.By;
-import utils.SafeElementsActions;
 
 public interface HotelSearchResultsRepo {
 
