@@ -60,7 +60,7 @@ public class BrowserInit {
                     break;
             }
             maximizeDriverWindow(driver);
-            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+            driver.manage().timeouts().implicitlyWait(Config.getImplicitWait(), TimeUnit.SECONDS);
         } else if (execType.equalsIgnoreCase("headspin")) {
             try {
                 capabilities.setBrowserName(browser.toLowerCase());

@@ -18,6 +18,8 @@ public class Config {
     public static final String CITY = "city";
     public static final String RATING = "rating";
     public static final String BASE_URL = "base_url";
+    public static final String IMPLICIT_WAIT = "selenium.element.implicitwait";
+    public static final String TIMEOUT = "selenium.element.mintimeout";
 
 
     public static final String PASSWORD = "password";
@@ -161,5 +163,23 @@ public class Config {
             e.printStackTrace();
         }
         return configuration.getString(BASE_URL);
+    }
+
+    public static int getTimeOut() {
+        try {
+            configuration = new PropertiesConfiguration((loadAndGetResourceLocation(configFile)));
+        } catch (ConfigurationException e) {
+            e.printStackTrace();
+        }
+        return configuration.getInt(TIMEOUT);
+    }
+
+    public static int getImplicitWait() {
+        try {
+            configuration = new PropertiesConfiguration((loadAndGetResourceLocation(configFile)));
+        } catch (ConfigurationException e) {
+            e.printStackTrace();
+        }
+        return configuration.getInt(IMPLICIT_WAIT);
     }
 }

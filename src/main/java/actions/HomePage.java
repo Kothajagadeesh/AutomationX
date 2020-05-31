@@ -42,8 +42,9 @@ public class HomePage extends SafeElementsActions implements HomePageRepo {
 
     public void clickContinueButton() {
         waitUntilElementDisplayed(continueButton);
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", driver.findElement(continueButton));
-        //click(continueButton);
+        //((JavascriptExecutor) driver).executeScript("arguments[0].click();", driver.findElement(continueButton));
+        click(continueButton);
+        click(continueButton);
     }
 
     public void clickLoginButton() {
@@ -58,6 +59,6 @@ public class HomePage extends SafeElementsActions implements HomePageRepo {
     }
 
     public void checkLoggedInUser(){
-        waitUntilElementDisplayed(loggedInUser,20);
+        waitUntilElementDisplayed(loggedInUser,10);
     }
 }

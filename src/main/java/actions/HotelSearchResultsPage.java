@@ -8,6 +8,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import repo.HotelSearchResultsRepo;
+import utils.Config;
 import utils.SafeElementsActions;
 
 import java.util.List;
@@ -35,13 +36,13 @@ public class HotelSearchResultsPage extends SafeElementsActions implements Hotel
     }
 
     public void dismissLocationPopUp() {
-        if (waitUntilElementDisplayed(locationPopUp, 10)) {
+        if (waitUntilElementDisplayed(locationPopUp,  Config.getTimeOut())) {
             driver.navigate().refresh();
         }
     }
 
     public void selectMinPriceRangeFromFilter(int minPriceRange) {
-        waitUntilElementDisplayed(sliderMinRange, 10);
+        waitUntilElementDisplayed(sliderMinRange,  Config.getTimeOut());
         Actions ac = new Actions(driver);
         switch (minPriceRange) {
             case 1000:
@@ -60,7 +61,7 @@ public class HotelSearchResultsPage extends SafeElementsActions implements Hotel
 
     public void hotelsLoading() {
         List<WebElement> loadingSymbol = driver.findElements(hotelsLoading);
-        WebDriverWait wait = new WebDriverWait(driver, 20);
+        WebDriverWait wait = new WebDriverWait(driver, Config.getTimeOut());
         if (loadingSymbol.size() > 0)
             wait.until(ExpectedConditions.invisibilityOfElementLocated(hotelsLoading));
     }
