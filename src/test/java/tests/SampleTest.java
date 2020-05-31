@@ -47,7 +47,7 @@ public class SampleTest extends BaseClass {
         //26:2500
 
         //testNgListener3.logWarning("This method is for entering warning message");
-        testNgListener3.AssertFailAndContinue(driver, 1 == 1, "checking Test1 assertion");
+        testNgListener3.assertFailAndContinue(driver, 1 == 1, "checking Test1 assertion");
     }
 
     @AfterClass

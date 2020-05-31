@@ -51,7 +51,7 @@ public class TestNgListener extends ExtentManager implements ITestListener, ISui
         extentReports.flush();
     }
 
-    public synchronized void AssertFailAndContinue(WebDriver driver, boolean result, String description) {
+    public synchronized void assertFailAndContinue(WebDriver driver, boolean result, String description) {
         try {
             String s = System.getProperty("user.dir") + screenshotDir + description.replaceAll(" ", "_") + ".png";
             sc = new ScreenShotCapture(driver);

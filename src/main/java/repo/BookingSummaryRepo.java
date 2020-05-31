@@ -9,9 +9,10 @@ public interface BookingSummaryRepo {
     public By contactInfo = By.className("contact_info");
     public By finalAmmount = By.id("top_rail_totalAmount");
     public By paymentAmount = By.id("PAYMENT_amount");
-    public By checkInTime = By.cssSelector("div.checkin p.checkin_time");
-    public By checkOutTime = By.cssSelector("div.checkout p.checkin_time");
+    public By checkInTime = By.cssSelector("div.checkin p.checkin_time span");
+    public By checkOutTime = By.cssSelector("div.checkout p.checkin_time span");
     public By roomsInfo = By.cssSelector("div.hotel_room_details span.labelinfo");
     public By adultsInfo = By.cssSelector("div.hotel_room_details span.adult_info");
     public By priceBreakUp = By.className("flightsidebar_trigger");
+    public By roomType = By.cssSelector(".room_heading.lato-semibold");
 }

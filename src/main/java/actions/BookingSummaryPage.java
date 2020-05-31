@@ -32,11 +32,15 @@ public class BookingSummaryPage  extends SafeElementsActions implements BookingS
     }
     
     public String getTravellerName() {
-    	return getText(travellerName);
+    	return getText(travellerName).trim();
     }
     
-    public String getContactInto() {
+    public String getContactInfo() {
     	return getText(contactInfo);
+    }
+
+    public String getRoomType(){
+        return getText(roomType).trim();
     }
     
     public String getFinalPayableAmount() {

@@ -11,8 +11,10 @@ public interface HotelsRepo {
     public By datePicker = By.cssSelector(".dayPickerHotelWrap");
     public By checkInDateField = By.cssSelector("label[for='checkin']");
     public By nextMonthNavButton = By.className("DayPicker-NavButton--next"); //click 3 times
-    public By dayPickerDays = By.className(".DayPicker-Month div[class='DayPicker-Day']"); //get list, click indexes 8, 10. get property aria-label for both
+    public By dayPickerDays = By.cssSelector(".DayPicker-Month div[class='DayPicker-Day']"); //get list, click indexes 8, 10. get property aria-label for both
     public By roomGuestsField = By.className("roomGuests");
+    public By guestSelectPopup = By.cssSelector(".roomsGuestsTop");
+    public By applyButton = By.cssSelector(".primaryBtn.btnApply");
     public By room1Adults = By.cssSelector("div[data-cy='roomRow1'] li[data-cy*='adults-']");
     public By room1Children = By.cssSelector("div[data-cy='roomRow1'] ul.guestCounter li[data-cy*='children-']");
     public By addAnotherRoomButton = By.className("btnAddRoom");
@@ -24,4 +26,5 @@ public interface HotelsRepo {
     public By SearchButton = By.id("hsw_search_button");
     public By checkInDate = By.cssSelector("p[data-cy='checkInDate']");
     public By checkOutDate = By.cssSelector("p[data-cy='checkOutDate']");
+    public By adultCountLocator = By.cssSelector("li[data-cy='adults-dynamicNo']");
 }

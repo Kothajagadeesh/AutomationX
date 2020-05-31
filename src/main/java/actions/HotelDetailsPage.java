@@ -19,20 +19,24 @@ public class HotelDetailsPage extends SafeElementsActions implements HotelDetail
         this.driver = driver;
     }
 
-    public String getHotelName(){
+    public String getHotelName() {
         return getText(hotelName);
     }
 
-    public void clickRoomsTab(){
+    public void clickRoomsTab() {
         click(roomsTab);
     }
 
-    public String getFirstRoomType(){
+    public String getHotelLocation() {
+        return getText(hotelLocation);
+    }
+
+    public String getFirstRoomType() {
         List<WebElement> roomTypes = driver.findElements(roomsType);
         return roomTypes.get(0).getText();
     }
 
-    public void selectFirstRoom(){
+    public void selectFirstRoom() {
         List<WebElement> selectRoomButtons = driver.findElements(selectRoomButton);
         selectRoomButtons.get(0).click();
     }

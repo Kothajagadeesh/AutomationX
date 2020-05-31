@@ -14,6 +14,8 @@ public interface ReviewBookingPageRepo {
     public By mobileNoField = By.cssSelector("input#mNo");
     public By commonRequests = By.cssSelector("div._SpecialRequest>ul>li span.makeFlex");
     public By donationCheckbox = By.cssSelector("input#donation");
+    public By donationCheckboxTest = By.cssSelector("label[for='donation']");
     public By agreeCheckbox = By.cssSelector("input#agree");
     public By payNowButton = By.cssSelector("a.btnPayNow");
+    public By finalPrice = By.id("revpg_total_payable_amt");
 }

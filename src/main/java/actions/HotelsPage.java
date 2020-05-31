@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Random;
 
 import org.apache.log4j.Logger;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -31,7 +32,6 @@ public class HotelsPage extends SafeElementsActions implements HotelsRepo {
         fillText(cityField, city);
         staticWait(2000);
         List<WebElement> cities = driver.findElements(citySuggestionList);
-        //int randomNumber = random.nextInt(cities.size())-1;
         cities.get(0).click();
     }
 
@@ -47,51 +47,34 @@ public class HotelsPage extends SafeElementsActions implements HotelsRepo {
         dates.get(randomNumber + 3).click();
     }
 
-    public void selectNoOfAdultsInRoom1(int numberOfAdults) {
-        if (!isDisplayed(roomGuestsField))
+    public void selectAdultAndChildCount(int adultCount, int childCount) {
+        click(roomGuestsField);
+        By adultCountLocator = By.cssSelector("li[data-cy='adults-" + adultCount + "']");
+        click(adultCountLocator);
+        if (!waitUntilElementDisplayed(guestSelectPopup, 5))
             click(roomGuestsField);
-        List<WebElement> adults = driver.findElements(room1Adults);
-        adults.get(numberOfAdults - 1).click();
+        By childCountLocator = By.cssSelector("li[data-cy='children-" + childCount + "']");
+        click(childCountLocator);
     }
 
-    public void selectNoOfChildsInRoom1(int numberOfChilds) {
-        if (!isDisplayed(roomGuestsField))
-            click(roomGuestsField);
-        List<WebElement> childs = driver.findElements(room1Children);
-        childs.get(numberOfChilds - 1).click();
+    public void clickApplyButton() {
+        if (waitUntilElementDisplayed(applyButton, 5))
+            click(applyButton);
     }
 
     public void addRoom() {
         click(addAnotherRoomButton);
     }
 
-    public void selectNoOfAdultsInRoom2(int numberOfAdults) {
-        if (!isDisplayed(roomGuestsField))
-            click(roomGuestsField);
-        List<WebElement> adults = driver.findElements(room2Adults);
-        adults.get(numberOfAdults - 1).click();
-    }
-
-    public void selectNoOfChildsInRoom2(int numberOfChilds) {
-        if (!isDisplayed(roomGuestsField))
-            click(roomGuestsField);
-        List<WebElement> childs = driver.findElements(room2Children);
-        childs.get(numberOfChilds - 1).click();
-    }
-
-    public void applyFilter() {
-        click(roomAndGuestsApplyButton);
-    }
-
     public void searchHotels() {
         click(SearchButton);
     }
 
-    public void getCheckInDate() {
-        getText(checkInDate);
+    public String getCheckInDate() {
+        return getText(checkInDate);
     }
 
-    public void getCheckOutDate() {
-        getText(checkOutDate);
+    public String getCheckOutDate() {
+        return getText(checkOutDate);
     }
 }

@@ -36,6 +36,10 @@ public class ReviewBookingPage extends SafeElementsActions implements ReviewBook
         clearAndFillText(lastNameField, sLanme);
     }
 
+    public String getTotalPrice() {
+        return getText(finalPrice);
+    }
+
     public void enterEmailID(String sEmailID) {
         clearAndFillText(emailIDField, sEmailID);
     }
@@ -64,7 +68,7 @@ public class ReviewBookingPage extends SafeElementsActions implements ReviewBook
 
         //only click if the test's intent does not match the current state
         if ((checkIt && !alreadySelected) || (!checkIt && alreadySelected)) {
-            click(donationCheckbox);
+            click(donationCheckboxTest);
         }
     }
 

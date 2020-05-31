@@ -4,12 +4,14 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import repo.HotelSearchResultsRepo;
 import utils.SafeElementsActions;
 
 import java.util.List;
+import java.util.Set;
 
 public class HotelSearchResultsPage extends SafeElementsActions implements HotelSearchResultsRepo {
 
@@ -29,6 +31,25 @@ public class HotelSearchResultsPage extends SafeElementsActions implements Hotel
                 ratings.get(i).click();
             }
         }
+        hotelsLoading();
+    }
+
+    public void selectMinPriceRangeFromFilter(int minPriceRange) {
+        waitUntilElementDisplayed(sliderMinRange, 10);
+        Actions ac = new Actions(driver);
+        switch (minPriceRange) {
+            case 1000:
+                ac.dragAndDropBy(driver.findElement(sliderMinRange), 8, 0);
+                break;
+            case 1500:
+                ac.dragAndDropBy(driver.findElement(sliderMinRange), 10, 0);
+                break;
+            case 2000:
+                ac.dragAndDropBy(driver.findElement(sliderMinRange), 12, 0);
+                break;
+        }
+        ac.build().perform();
+        hotelsLoading();
     }
 
     public void hotelsLoading() {
@@ -51,5 +72,16 @@ public class HotelSearchResultsPage extends SafeElementsActions implements Hotel
                 js.executeScript("window.scrollBy(0,1000)");
         }
         return selectedHotel;
+    }
+
+    public void switchToNewTab(String parentWindow) {
+        Set<String> handles = driver.getWindowHandles();
+        for (String handle : handles) {
+            if (!handle.equalsIgnoreCase(parentWindow)) {
+                logger.info("Switch to window: " + handle);
+                driver.switchTo().window(handle);
+                break;
+            }
+        }
     }
 }
